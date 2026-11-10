@@ -1,0 +1,60 @@
+### 1. Listar todos os chamados
+GET http://localhost:8080/chamados
+
+### 2. Consultar chamado por ID
+GET http://localhost:8080/chamados/3
+
+### 3. Consultar ID inexistente (404)
+GET http://localhost:8080/chamados/999
+
+### 4. Filtrar por setor (maiúsculas/minúsculas ignoradas)
+GET http://localhost:8080/chamados/setor?nome=FINANCEIRO
+
+### 5. Filtrar por setor sem correspondência
+GET http://localhost:8080/chamados/setor?nome=diretoria
+
+### 6. Filtrar por prioridade
+GET http://localhost:8080/chamados/prioridade?nivel=alta
+
+### 7. Prioridade inválida (400)
+GET http://localhost:8080/chamados/prioridade?nivel=urgente
+
+### 8. Buscar pelo título
+GET http://localhost:8080/chamados/busca?texto=Impressora
+
+### 9. Busca sem correspondência
+GET http://localhost:8080/chamados/busca?texto=teclado
+
+### 10. Chamados críticos (ALTA e não resolvidos)
+GET http://localhost:8080/chamados/criticos
+
+### 11. Resumo por status
+GET http://localhost:8080/chamados/resumo
+
+### 12. Cadastrar novo chamado (201)
+POST http://localhost:8080/chamados
+Content-Type: application/json
+
+{
+  "titulo": "Teclado sem funcionar",
+  "solicitante": "Marina Gomes",
+  "setor": "Financeiro",
+  "prioridade": "alta"
+}
+
+### 13. Verificar chamado cadastrado
+GET http://localhost:8080/chamados/13
+
+### 14. Busca agora encontra o novo chamado
+GET http://localhost:8080/chamados/busca?texto=teclado
+
+### 15. Resumo atualizado
+GET http://localhost:8080/chamados/resumo
+
+### 16. Cadastro inválido (400)
+POST http://localhost:8080/chamados
+Content-Type: application/json
+
+{
+  "titulo": "Sem setor"
+}
